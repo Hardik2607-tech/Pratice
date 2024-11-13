@@ -1,0 +1,7 @@
+#x = eval(input("Enter list: "))
+#print(type(x))
+#print(x)
+print("Hello "+"World")
+print("Hello ",end='')
+print("Durga " ,end='')
+print("soft" ,end='')
