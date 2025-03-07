@@ -1,0 +1,11 @@
+str1 = 'abcdefghij'
+print(str1[1:6:2])
+print(str1[::2])
+print(str1[7:4:-1])
+print(str1[3:7:-1])
+print(str1[0:10000:1])
+print(str1[-4:1:-1])
+print(str1[5:0:1])
+#print(str1[9:0:0])
+print(str1[0:-10:-1])
+print(str1[1000:2:-1])
