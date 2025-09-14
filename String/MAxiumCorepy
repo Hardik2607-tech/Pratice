@@ -1,0 +1,22 @@
+def maxScore(s: str) -> int:
+    totalOnes = s.count("1")
+    zerosLeft = 0
+    onesSoFar = 0
+    maxScore = 0
+
+    # Stop at len(s) - 1 to keep right part non-empty
+    for i in range(len(s) - 1):
+        if s[i] == "0":
+            zerosLeft += 1
+        else:
+            onesSoFar += 1
+        score = zerosLeft + (totalOnes - onesSoFar)
+        maxScore = max(maxScore, score)
+
+    return maxScore
+
+
+# Example runs
+print(maxScore("011101"))  # Output: 5
+print(maxScore("00111"))   # Output: 5
+print(maxScore("1111"))    # Output: 3
