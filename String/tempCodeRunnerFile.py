@@ -1,13 +1,17 @@
-def largeGroupPositions(s: str):
-    res = []
-    i = 0
-    n = len(s)
-    
-    for j in range(n):
-        # if it's the end of group (last char OR next char different)
-        if j == n - 1 or s[j] != s[j + 1]:
-            if j - i + 1 >= 3:
-                res.append([i, j])
-            i = j + 1  # move start to next group
-    
-    return res
+class Solution:
+    def isLongPressedName(self, name: str, typed: str) -> bool:
+        i, j = 0, 0  # pointers for name and typed
+
+        while j < len(typed):
+            if i < len(name) and name[i] == typed[j]:
+                # characters match → move both
+                i += 1
+                j += 1
+            elif j > 0 and typed[j] == typed[j-1]:
+                # long press of previous character
+                j += 1
+            else:
+                return False
+        
+        return i == len(name)
+
