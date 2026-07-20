@@ -5,15 +5,16 @@ using namespace std;
 
 int longstring(vector<char>&str){
   unordered_map<char, int> lastIndex;
-  int left = 0;
+  int l = 0;
   int ans = 0;
+  int n = str.size();
 
-  for (int right = 0; right < str.size(); right++) {
-    if (lastIndex.count(str[right]) && lastIndex[str[right]] >= left) {
-      left = lastIndex[str[right]] + 1;
+  for (int r = 0; r < n; r++) {
+    if (lastIndex.count(str[r]) && lastIndex[str[r]] >= l) {
+      l = lastIndex[str[r]] + 1;
     }
-    lastIndex[str[right]] = right;
-    ans = max(ans, right - left + 1);
+    lastIndex[str[r]] = r;
+    ans = max(ans, r - l + 1);
   }
 
   return ans;
