@@ -4,20 +4,32 @@
 using namespace std;
 
 int longsubstr(string s) {
-  unordered_map<char,int> mp;
+  //unordered_map<char,int> mp;
   int n = s.size();
-  int left = 0;
-  int ans = 0;
+  int hashlen = 256;
+  int hash[hashlen];
 
-  for(int right = 0; right < n; right++){
-
-    if(mp.count(s[right])){
-      left = max(left, mp[s[right]] + 1);
-    }
-    mp[s[right]] = right;
-    ans = max(ans, right - left + 1);
+  for(int i = 0; i < 256; i++){
+    hash[i] = -1;    
   }
-  return ans;
+  int l = 0;
+  int r = 0;
+  int maxlen = 0;
+
+  while(r<n){
+
+    if(hash[s[r]] != -1){
+      l = max(hash[s[r]]+1,l);
+    }
+
+    int len = r - l + 1;
+    maxlen = max(len,maxlen);
+
+    hash[s[r]] = r;
+    r++;
+  }
+
+  return maxlen;
 }
 
 int main() {
