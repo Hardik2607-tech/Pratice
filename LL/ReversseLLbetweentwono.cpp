@@ -26,19 +26,30 @@ Node* arrtoll(vector<int> &arr){
 }
 
 
-Node* reversell(Node* head){
+Node* reversell(Node* head,int n,int m){
 
-  Node* prev = NULL;
-  Node* cur = head;
-  
-  while (cur != NULL){
+  Node* dummy = new Node(0);
+  dummy->next = head;
+  Node* prev = dummy;
+ 
+  for(int i=1;i<n;i++){
+    prev = prev->next;
+  }
+
+  Node* cur = prev->next;
+  Node* sectionstart = cur;
+  Node* revprev = NULL;
+
+  for(int i=0;i<=m-n;i++){
     Node* next = cur->next;
-    cur->next = prev;
-
-    prev = cur;
+    cur->next = revprev;
+    revprev = cur;
     cur = next;
   }
-  return prev;
+  prev->next = revprev;
+  sectionstart->next = cur;
+
+  return dummy->next;
 }
 
 void printLL(Node* head) {
@@ -61,12 +72,18 @@ int main(){
   for(int i=0;i<n;i++){
     cin>>arr[i];
   }
+
+  int left;
+  cin>>left;
+
+  int right;
+  cin>>right;
   
   Node* head = arrtoll(arr);
 
-  head = reversell(head);
+  head = reversell(head,left,right);
 
   printLL(head);
 
   return 0;
-}
+} 
